@@ -1,0 +1,111 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button class="nav-btn" (click)="previousMonth()">&lt;</button>
+    <h2>{{ monthNames[currentMonth] }} {{ currentYear }}</h2>
+    <button class="nav-btn" (click)="nextMonth()">&gt;</button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <span class="legend-dot period"></span>
+      <span>Period</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-dot predicted"></span>
+      <span>Predicted</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-dot fertile"></span>
+      <span>Fertile</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-dot ovulation"></span>
+      <span>Ovulation</span>
+    </div>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+
+    <div
+      *ngFor="let day of calendarDays"
+      [ngClass]="getDayClasses(day)"
+      (click)="selectDay(day)">
+      <div class="day-content" *ngIf="day">
+        <span class="day-number">{{ day.date.getDate() }}</span>
+        <span class="flow-indicator" *ngIf="day.isPeriod">{{ getFlowIcon(day) }}</span>
+        <span class="symptoms-indicator" *ngIf="day.symptoms.length > 0">*</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day Details Modal -->
+  <div class="modal-overlay" *ngIf="selectedDay" (click)="closeDetails()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>{{ selectedDay.date | date: 'MMMM d, yyyy' }}</h3>
+        <button class="close-btn" (click)="closeDetails()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="detail-section" *ngIf="selectedDay.dayOfCycle">
+          <strong>Day of Cycle:</strong> {{ selectedDay.dayOfCycle }}
+        </div>
+
+        <div class="detail-section" *ngIf="selectedDay.isPeriod">
+          <div class="status-badge period">Period Day</div>
+          <div *ngIf="selectedDay.flowIntensity">
+            <strong>Flow:</strong> {{ selectedDay.flowIntensity }}
+          </div>
+        </div>
+
+        <div class="detail-section" *ngIf="selectedDay.isPredicted">
+          <div class="status-badge predicted">Predicted Period</div>
+        </div>
+
+        <div class="detail-section" *ngIf="selectedDay.isFertile">
+          <div class="status-badge fertile">Fertile Window</div>
+        </div>
+
+        <div class="detail-section" *ngIf="selectedDay.isOvulation">
+          <div class="status-badge ovulation">Ovulation Day</div>
+        </div>
+
+        <div class="detail-section" *ngIf="selectedDay.symptoms.length > 0">
+          <strong>Symptoms:</strong>
+          <ul class="symptoms-list">
+            <li *ngFor="let symptom of selectedDay.symptoms">
+              {{ getSymptomLabel(symptom.type) }}
+              <span *ngIf="symptom.severity"> ({{ symptom.severity }})</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="modal-actions">
+          <button
+            *ngIf="selectedDay.isPeriod"
+            class="action-btn edit-btn"
+            (click)="onEditPeriod()"
+            title="Edit this period entry">
+            ✏️ Edit Period
+          </button>
+          <button
+            *ngIf="selectedDay.isPeriod"
+            class="action-btn delete-btn"
+            (click)="onDeletePeriod()"
+            title="Delete this period entry">
+            🗑️ Delete
+          </button>
+          <button
+            *ngIf="!selectedDay.isPeriod && !selectedDay.isPredicted"
+            class="action-btn add-btn"
+            (click)="onAddPeriod()"
+            title="Log period starting this day">
+            ➕ Log Period
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

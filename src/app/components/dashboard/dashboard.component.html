@@ -1,0 +1,126 @@
+<div class="dashboard-container">
+  <div class="welcome-section" *ngIf="cycleData">
+    <h1>Your Cycle</h1>
+    <div class="cycle-overview">
+      <div class="overview-card primary">
+        <div class="card-icon">📅</div>
+        <div class="card-content">
+          <div class="card-label">Next Period</div>
+          <div class="card-value" *ngIf="getDaysUntilNextPeriod() !== null">
+            <span class="days">{{ getDaysUntilNextPeriod() }}</span> days
+          </div>
+          <div class="card-date" *ngIf="cycleData.nextPredictedPeriod">
+            {{ cycleData.nextPredictedPeriod | date: 'MMM d, yyyy' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="card-icon">🌙</div>
+        <div class="card-content">
+          <div class="card-label">Current Phase</div>
+          <div class="card-value phase">{{ getCurrentPhase() }}</div>
+          <div class="card-description">{{ getPhaseDescription() }}</div>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="card-icon">📊</div>
+        <div class="card-content">
+          <div class="card-label">Day of Cycle</div>
+          <div class="card-value">
+            Day <span class="highlight">{{ cycleData.currentDayOfCycle }}</span>
+          </div>
+          <div class="card-description">of {{ cycleData.averageCycleLength }} day cycle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-data" *ngIf="!cycleData">
+    <div class="no-data-icon">📝</div>
+    <h2>Welcome to Moon Cycle</h2>
+    <p>Start tracking your period to get predictions and insights.</p>
+    <p class="hint">Tap the "+" button below to log your first period.</p>
+  </div>
+
+  <div class="stats-section" *ngIf="cycleData">
+    <h2>Cycle Statistics</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Average Cycle</div>
+        <div class="stat-value">{{ cycleData.averageCycleLength }} <span>days</span></div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Period Length</div>
+        <div class="stat-value">{{ cycleData.averagePeriodLength }} <span>days</span></div>
+      </div>
+
+      <div class="stat-card" *ngIf="insights">
+        <div class="stat-label">Total Cycles</div>
+        <div class="stat-value">{{ insights.totalCycles }}</div>
+      </div>
+
+      <div class="stat-card" *ngIf="insights">
+        <div class="stat-label">Regularity</div>
+        <div class="stat-value regularity">{{ getRegularityLabel() }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insights-section" *ngIf="insights && insights.commonSymptoms.length > 0">
+    <h2>Common Symptoms</h2>
+    <div class="symptoms-list">
+      <div class="symptom-item" *ngFor="let symptom of insights.commonSymptoms">
+        <span class="symptom-name">{{ getSymptomLabel(symptom.symptom) }}</span>
+        <span class="symptom-frequency">{{ symptom.frequency }}x</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fertile-window" *ngIf="cycleData?.fertileWindowStart && cycleData?.fertileWindowEnd">
+    <h2>Fertile Window</h2>
+    <div class="fertile-card">
+      <div class="fertile-icon">🌸</div>
+      <div class="fertile-content">
+        <p>
+          <strong>{{ cycleData?.fertileWindowStart | date: 'MMM d' }}</strong>
+          to
+          <strong>{{ cycleData?.fertileWindowEnd | date: 'MMM d' }}</strong>
+        </p>
+        <p class="fertile-note" *ngIf="cycleData?.ovulationDay">
+          Ovulation expected around {{ cycleData?.ovulationDay | date: 'MMM d' }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="history-section" *ngIf="periods.length > 0">
+    <h2>Period History</h2>
+    <div class="history-list">
+      <div class="history-item" *ngFor="let period of periods">
+        <div class="history-content">
+          <div class="history-date">
+            <span class="date-icon">📅</span>
+            <div class="date-info">
+              <div class="date-primary">
+                {{ period.startDate | date: 'MMM d, yyyy' }}
+                <span *ngIf="period.endDate"> - {{ period.endDate | date: 'MMM d, yyyy' }}</span>
+              </div>
+              <div class="date-secondary" *ngIf="period.flowIntensity && period.flowIntensity.length > 0">
+                Flow: {{ period.flowIntensity[0].intensity | titlecase }}
+                <span *ngIf="period.symptoms && period.symptoms.length > 0">
+                  • {{ period.symptoms.length }} symptom<span *ngIf="period.symptoms.length !== 1">s</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <button class="edit-btn" (click)="onEditPeriod(period)" title="Edit entry">
+            ✏️
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

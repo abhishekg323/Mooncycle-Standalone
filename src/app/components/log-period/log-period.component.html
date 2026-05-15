@@ -1,0 +1,174 @@
+<div class="modal-overlay" (click)="cancel()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ isEditMode ? 'Edit Period' : 'Log Period' }}</h2>
+      <button class="close-btn" (click)="cancel()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <form (ngSubmit)="savePeriod()">
+        <!-- Date Section -->
+        <div class="form-section">
+          <h3>Period Dates</h3>
+
+          <div class="date-row">
+            <div class="form-group">
+              <label for="startDate">Start Date *</label>
+              <input
+                type="date"
+                id="startDate"
+                [(ngModel)]="startDate"
+                name="startDate"
+                required
+                class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label for="endDate">End Date (optional)</label>
+              <input
+                type="date"
+                id="endDate"
+                [(ngModel)]="endDate"
+                name="endDate"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <!-- Flow Intensity -->
+        <div class="form-section">
+          <h3>Flow Intensity</h3>
+          <div class="flow-options">
+            <label class="flow-option" [class.selected]="flowIntensity === 'spotting'">
+              <input
+                type="radio"
+                [(ngModel)]="flowIntensity"
+                name="flow"
+                value="spotting">
+              <span class="flow-label">
+                <span class="flow-icon">·</span>
+                Spotting
+              </span>
+            </label>
+
+            <label class="flow-option" [class.selected]="flowIntensity === 'light'">
+              <input
+                type="radio"
+                [(ngModel)]="flowIntensity"
+                name="flow"
+                value="light">
+              <span class="flow-label">
+                <span class="flow-icon">•</span>
+                Light
+              </span>
+            </label>
+
+            <label class="flow-option" [class.selected]="flowIntensity === 'medium'">
+              <input
+                type="radio"
+                [(ngModel)]="flowIntensity"
+                name="flow"
+                value="medium">
+              <span class="flow-label">
+                <span class="flow-icon">••</span>
+                Medium
+              </span>
+            </label>
+
+            <label class="flow-option" [class.selected]="flowIntensity === 'heavy'">
+              <input
+                type="radio"
+                [(ngModel)]="flowIntensity"
+                name="flow"
+                value="heavy">
+              <span class="flow-label">
+                <span class="flow-icon">•••</span>
+                Heavy
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Symptoms -->
+        <div class="form-section">
+          <h3>Symptoms</h3>
+          <div class="symptoms-grid">
+            <button
+              type="button"
+              *ngFor="let symptom of availableSymptoms"
+              class="symptom-btn"
+              [class.selected]="selectedSymptoms.has(symptom.type)"
+              (click)="toggleSymptom(symptom.type)">
+              <span class="symptom-icon">{{ symptom.icon }}</span>
+              <span class="symptom-label">{{ symptom.label }}</span>
+            </button>
+          </div>
+
+          <!-- Severity for selected symptoms -->
+          <div class="severity-section" *ngIf="selectedSymptoms.size > 0">
+            <h4>Symptom Severity</h4>
+            <div class="severity-list">
+              <div
+                *ngFor="let symptom of availableSymptoms"
+                class="severity-item"
+                [class.hidden]="!selectedSymptoms.has(symptom.type)">
+                <span class="severity-label">{{ symptom.label }}</span>
+                <div class="severity-options">
+                  <button
+                    type="button"
+                    class="severity-btn"
+                    [class.selected]="getSeverity(symptom.type) === 'mild'"
+                    (click)="setSeverity(symptom.type, 'mild')">
+                    Mild
+                  </button>
+                  <button
+                    type="button"
+                    class="severity-btn"
+                    [class.selected]="getSeverity(symptom.type) === 'moderate'"
+                    (click)="setSeverity(symptom.type, 'moderate')">
+                    Moderate
+                  </button>
+                  <button
+                    type="button"
+                    class="severity-btn"
+                    [class.selected]="getSeverity(symptom.type) === 'severe'"
+                    (click)="setSeverity(symptom.type, 'severe')">
+                    Severe
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="form-section">
+          <h3>Notes (optional)</h3>
+          <textarea
+            [(ngModel)]="notes"
+            name="notes"
+            class="form-control"
+            rows="3"
+            placeholder="Add any additional notes..."></textarea>
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+          <button
+            *ngIf="isEditMode"
+            type="button"
+            class="btn btn-danger"
+            (click)="deletePeriod()">
+            Delete
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="cancel()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {{ isEditMode ? 'Update' : 'Save Period' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

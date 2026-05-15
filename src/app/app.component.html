@@ -1,0 +1,56 @@
+<div class="app-container">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">🌙</span>
+        <h1>{{ title }}</h1>
+      </div>
+      <button class="add-btn" (click)="openLogPeriod()" title="Log Period">
+        <span>+</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="app-nav">
+    <button
+      class="nav-btn"
+      [class.active]="currentView === 'dashboard'"
+      (click)="setView('dashboard')">
+      <span class="nav-icon">📊</span>
+      <span class="nav-label">Dashboard</span>
+    </button>
+    <button
+      class="nav-btn"
+      [class.active]="currentView === 'calendar'"
+      (click)="setView('calendar')">
+      <span class="nav-icon">📅</span>
+      <span class="nav-label">Calendar</span>
+    </button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-content">
+    <app-dashboard
+      *ngIf="currentView === 'dashboard'"
+      (editPeriod)="openLogPeriod($event)"></app-dashboard>
+    <app-calendar
+      *ngIf="currentView === 'calendar'"
+      (editPeriod)="openLogPeriod($event)"
+      (addPeriod)="openLogPeriodWithDate($event)"></app-calendar>
+  </main>
+
+  <!-- Log Period Modal -->
+  <app-log-period
+    *ngIf="showLogPeriod"
+    [periodToEdit]="periodToEdit"
+    [prefilledDate]="prefilledDate"
+    (close)="closeLogPeriod()"></app-log-period>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>Your data stays private on your device</p>
+  </footer>
+</div>
+
