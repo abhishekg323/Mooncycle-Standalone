@@ -1,0 +1,79 @@
+{
+  "configVersion": 1,
+  "timestamp": 1779079608108,
+  "index": "/Mooncycle-Standalone/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Mooncycle-Standalone/favicon.ico",
+        "/Mooncycle-Standalone/index.html",
+        "/Mooncycle-Standalone/main-HC4A55BT.js",
+        "/Mooncycle-Standalone/manifest.webmanifest",
+        "/Mooncycle-Standalone/polyfills-B6TNHZQ6.js",
+        "/Mooncycle-Standalone/styles-4Q2E2TK5.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Mooncycle-Standalone/icons/icon-128x128.png",
+        "/Mooncycle-Standalone/icons/icon-144x144.png",
+        "/Mooncycle-Standalone/icons/icon-152x152.png",
+        "/Mooncycle-Standalone/icons/icon-192x192.png",
+        "/Mooncycle-Standalone/icons/icon-384x384.png",
+        "/Mooncycle-Standalone/icons/icon-512x512.png",
+        "/Mooncycle-Standalone/icons/icon-72x72.png",
+        "/Mooncycle-Standalone/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/Mooncycle-Standalone/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/Mooncycle-Standalone/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/Mooncycle-Standalone/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/Mooncycle-Standalone/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/Mooncycle-Standalone/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/Mooncycle-Standalone/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/Mooncycle-Standalone/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/Mooncycle-Standalone/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/Mooncycle-Standalone/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/Mooncycle-Standalone/index.html": "bbb242e182cf7cac1d3f6e0315fd27095fd6f152",
+    "/Mooncycle-Standalone/main-HC4A55BT.js": "f1281ef4dc322e8c36870780ed4d46272041a567",
+    "/Mooncycle-Standalone/manifest.webmanifest": "dd3694d4bce7e4c1092cd2381e4572a54649d1a9",
+    "/Mooncycle-Standalone/polyfills-B6TNHZQ6.js": "bf76ac291d7f51c1139b7edcf86b359a30c08c64",
+    "/Mooncycle-Standalone/styles-4Q2E2TK5.css": "9161c4f20dc6041a296681529e570b4fe337db9c"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
