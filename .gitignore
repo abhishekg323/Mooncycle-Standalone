@@ -47,6 +47,10 @@ CRUD_SUMMARY.md
 DEVELOPMENT.md
 EDIT_FEATURE.md
 
+# Deployment scripts (personal use, not for contributors)
+deploy.sh
+DEPLOYMENT.md
+
 # Environment variables
 .env
 .env.local
