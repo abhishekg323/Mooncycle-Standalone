@@ -1,5 +1,12 @@
 # Moon Cycle - Period Tracker PWA
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Angular](https://img.shields.io/badge/angular-19-red.svg)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/typescript-5.7-blue.svg)](https://www.typescriptlang.org/)
+[![PWA](https://img.shields.io/badge/PWA-enabled-purple.svg)](https://web.dev/progressive-web-apps/)
+[![Privacy First](https://img.shields.io/badge/privacy-first-green.svg)](#-privacy-first)
+[![Offline Support](https://img.shields.io/badge/offline-supported-orange.svg)](#-pwa-features)
+
 A privacy-first, offline-capable menstrual cycle tracking Progressive Web App (PWA) built with Angular 19.
 
 ## Features

@@ -40,3 +40,18 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Development notes (not for public repo)
+CALENDAR_CRUD.md
+CRUD_SUMMARY.md
+DEVELOPMENT.md
+EDIT_FEATURE.md
+
+# Environment variables
+.env
+.env.local
+
+# Editor
+*.swp
+*.swo
+*~

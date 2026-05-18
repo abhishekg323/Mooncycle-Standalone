@@ -1,14 +1,38 @@
 {
   "name": "moon-cycle",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A privacy-first, offline-capable menstrual cycle tracking Progressive Web App (PWA) built with Angular 19",
+  "author": "Abhishek Gupta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhishekg323/moon-cycle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abhishekg323/moon-cycle/issues"
+  },
+  "homepage": "https://github.com/abhishekg323/moon-cycle#readme",
+  "keywords": [
+    "period-tracker",
+    "menstrual-cycle",
+    "pwa",
+    "angular",
+    "privacy-first",
+    "offline",
+    "health",
+    "women-health",
+    "cycle-tracker"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
