@@ -29,9 +29,9 @@ If you don't have Node.js installed:
 
 If you just want to use the app:
 
-1. Visit the deployed version at: [YOUR-DEPLOYMENT-URL]
-2. Click "Install" in your browser
-3. The app will be added to your device
+1. Visit the deployed version at: **https://abhishekg323.github.io/Mooncycle-Standalone/**
+2. Click "Install" in your browser (look for the install icon in the address bar)
+3. The app will be added to your device and work offline
 
 ### Method 2: For Developers (From Source)
 

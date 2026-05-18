@@ -9,6 +9,12 @@
 
 A privacy-first, offline-capable menstrual cycle tracking Progressive Web App (PWA) built with Angular 19.
 
+## 🌐 Live Demo
+
+**Try it now:** [https://abhishekg323.github.io/Mooncycle-Standalone/](https://abhishekg323.github.io/Mooncycle-Standalone/)
+
+> 💡 Click the install icon in your browser to add it to your home screen and use it offline!
+
 ## Features
 
 ### 🌙 Core Features
